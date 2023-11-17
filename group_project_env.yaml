@@ -1,7 +1,5 @@
-# Install the course conda environment with the following command:
-# conda env create -f env-dsci-571.yaml
-# Once you install it, you should be able to see it in your Jupyter Lab. 
-# If not, check the documentation here: https://ipython.readthedocs.io/en/stable/install/kernel_install.html
+# This environment is developed from the environment setup from course 571
+# Which aligns with our goal of machine learning analysis in this project.
 name: '571'
 channels:
     - conda-forge
@@ -27,7 +25,6 @@ dependencies:
     - jinja2
     - pip>=23.2.1    
     - pip:
-        - otter-grader==5.2.2
         - mglearn
         - graphviz
         - psutil>=5.7.2
