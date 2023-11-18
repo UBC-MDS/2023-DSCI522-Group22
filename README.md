@@ -3,7 +3,11 @@
 ### By Jordan Cairns, Chris Gao, Yingzi Jin, and Chun Li
 
 ## Project Overview
-In the intricate world of oenology, the distinction between red and white wines extends beyond color, embedding itself in the nuanced spectrum of their physicochemical properties. This project embarks on a data-driven journey to unravel these complexities by leveraging statistical models to classify wines as red or white based on their inherent characteristics. Utilizing a rich dataset that encapsulates key attributes like acidity, sugar content, sulfur dioxide levels, alcohol concentration, and more, we aim to build a predictive model that not only accurately classifies the wines but also sheds light on the influential factors that underpin this classification. Through this analysis, we intend to blend the art of winemaking with the precision of data science, offering insights that could prove valuable to vintners, sommeliers, and wine enthusiasts alike in understanding the subtle distinctions between these two celebrated categories of wine!
+Our analysis aimed to develop a predictive model to distinguish between red and white wines based on various physicochemical properties. This study employed logistic regression, a model renowned for its balance between predictive power and interpretability.
+
+The regression result suggested that residual sugar and total sulfur dioxide had high positive coefficients, indicating a strong association with white wine, whereas density showed the most substantial negative impact, followed by alcohol and volatile acidity, suggesting these are key indicators of red wine.
+
+The logistic regression model not only achieved high accuracy but also provided valuable insights into the features most indicative of wine type. This model can assist vintners in quality control and classification tasks. Moreover, the interpretability of the model offers a foundation for further research into wine composition and its impact on sensory attributes. Future studies might explore more complex models or delve deeper into feature engineering to enhance predictive accuracy and understanding.
 
 ## Licenses
 This project is licensed under the [MIT License] [LICENSE.md](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/LICENSE).
