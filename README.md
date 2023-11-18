@@ -6,7 +6,7 @@
 In the intricate world of oenology, the distinction between red and white wines extends beyond color, embedding itself in the nuanced spectrum of their physicochemical properties. This project embarks on a data-driven journey to unravel these complexities by leveraging statistical models to classify wines as red or white based on their inherent characteristics. Utilizing a rich dataset that encapsulates key attributes like acidity, sugar content, sulfur dioxide levels, alcohol concentration, and more, we aim to build a predictive model that not only accurately classifies the wines but also sheds light on the influential factors that underpin this classification. Through this analysis, we intend to blend the art of winemaking with the precision of data science, offering insights that could prove valuable to vintners, sommeliers, and wine enthusiasts alike in understanding the subtle distinctions between these two celebrated categories of wine!
 
 ## Licenses
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [MIT License] [LICENSE.md](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/LICENSE).
 
 ## Environment Setup
 To recreate our computational environment, please use conda and the provided `env-group-project.yml` file in the root directory. Run the following command in the command line:
