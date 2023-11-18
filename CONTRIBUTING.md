@@ -1,6 +1,6 @@
 # Contributing to A Practical Exploration of the Wine Quality Dataset
 
-We welcome all contributions to out project - A Practical Exploration of the Wine Quality Dataset! Your ideas, bug reports, and pull requests are greatly appreciated and will help us improve the project.
+We welcome all contributions to out project - "A Practical Exploration of the Wine Quality Dataset" Your ideas, bug reports, and pull requests are greatly appreciated and will help us improve the project.
 
 ## Reporting Issues
 
