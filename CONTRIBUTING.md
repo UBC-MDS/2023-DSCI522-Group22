@@ -32,7 +32,7 @@ Your pull request will be reviewed by one or more members of the core team. We m
 
 ### Merging
 
-Once your pull request is approved, a member of the core team will merge it into the repository. 
+Once your pull request is approved, a member of the core team will merge it into the main branch of the repository. 
 
 ## Code of Conduct
 
