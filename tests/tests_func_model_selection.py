@@ -8,12 +8,11 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.naive_bayes import BernoulliNB
-from sklearn.linear_model import LogisticRegression, RidgeClassifier
-from src.helper_func_model_selection import model_selection
-
-
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import Ridge
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.helper_func_model_selection import model_selection
 
 def test_single_model():
     # Test with a single model
@@ -31,7 +30,8 @@ def test_multiple_models():
 
 def test_multiple_models_with_extra_input():
     # Test with multiple models with invalid inputs
-    models = model_selection("dtree", "knn", "svm", a)
+    # Invalid inputs here are "a" and 1
+    models = model_selection("dtree", "knn", "svm", "a", 1)
     assert len(models) == 3
     assert isinstance(models['Decision Tree'], DecisionTreeClassifier)
     assert isinstance(models['KNN'], KNeighborsClassifier)
@@ -41,11 +41,6 @@ def test_no_models():
     # Test with no models (should return empty dictionary)
     models = model_selection()
     assert models == {}
-
-def test_invalid_model():
-    # Test with an invalid model abbreviation
-    with pytest.raises(KeyError):
-        model_selection("invalid_model")
 
 def test_all_models():
     # Test with all models
@@ -57,4 +52,4 @@ def test_all_models():
     assert isinstance(models['RBF SVM'], SVC)
     assert isinstance(models['Naive Bayes'], BernoulliNB)
     assert isinstance(models['Logistic Regression'], LogisticRegression)
-    assert isinstance(models['Ridge'], RidgeClassifier)
+    assert isinstance(models['Ridge'], Ridge)

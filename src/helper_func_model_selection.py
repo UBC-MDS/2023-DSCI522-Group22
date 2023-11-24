@@ -5,7 +5,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.naive_bayes import BernoulliNB
-from sklearn.linear_model import LogisticRegression, RidgeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import Ridge
 
 def model_selection(*abbreviations):
     """
@@ -48,7 +49,7 @@ def model_selection(*abbreviations):
         "svm": SVC(random_state=123),
         "nb": BernoulliNB(),
         "lr": LogisticRegression(max_iter=1000),
-        "lc": RidgeClassifier()
+        "lc": Ridge()
     }
 
     # Building the dictionary of models based on provided abbreviations
