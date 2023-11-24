@@ -11,6 +11,11 @@ def create_wine_prediction_chart(dataframe, red_wine_color, white_wine_color):
 
     Returns:
     alt.Chart: An Altair bar chart.
+
+    Example usage:
+    result_df = <your_dataframe>
+    chart = create_wine_prediction_chart(result_df, 'red', 'peachpuff')
+    chart
     """
     # Add a new column for Wine Prediction based on the coefficient
     dataframe['Wine Prediction'] = dataframe['Coefficient'].apply(lambda x: 'Predicting White Wine' if x > 0 else 'Predicting Red Wine')
@@ -28,7 +33,4 @@ def create_wine_prediction_chart(dataframe, red_wine_color, white_wine_color):
 
     return chart
 
-# Example usage:
-# result_df = <your_dataframe>
-# chart = create_wine_prediction_chart(result_df, 'red', 'peachpuff')
-# chart
+
