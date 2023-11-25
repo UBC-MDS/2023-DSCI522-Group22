@@ -17,6 +17,25 @@ def create_wine_prediction_chart(dataframe, red_wine_color, white_wine_color):
     chart = create_wine_prediction_chart(result_df, 'red', 'peachpuff')
     chart
     """
+    # Input validation
+    if not isinstance(dataframe, pd.DataFrame):
+        raise ValueError("The 'dataframe' argument must be a pandas DataFrame.")
+    
+    if dataframe.empty:
+        raise ValueError("The 'dataframe' argument must not be empty.")
+
+    if not 'Coefficient' in dataframe.columns:
+        raise ValueError("The DataFrame must contain a 'Coefficient' column.")
+    
+    if not isinstance(red_wine_color, str) or not isinstance(white_wine_color, str):
+        raise ValueError("The color arguments must be strings.")
+    
+    if not red_wine_color.strip():
+        red_wine_color = "darkred"
+    
+    if not white_wine_color.strip():
+        white_wine_color = "darkred"
+
     # Add a new column for Wine Prediction based on the coefficient
     dataframe['Wine Prediction'] = dataframe['Coefficient'].apply(lambda x: 'Predicting White Wine' if x > 0 else 'Predicting Red Wine')
 
