@@ -32,10 +32,19 @@ and launch Docker on your computer.
 ``` 
 docker compose up
 ```
-
 2. In the terminal, look for a URL that starts with 
 `http://127.0.0.1:8888/lab?token=` 
 Copy and paste that URL into your browser.
+
+3. To run the analysis,
+open `src/breast_cancer_predict_report.ipynb` in Jupyter Lab you just launched
+and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+
+#### Clean up
+
+1. To shut down the container and clean up the resources, 
+type `Cntrl` + `C` in the terminal
+where you launched the container, and then type `docker compose rm`
 
 ## Licenses
 This project is licensed under the [MIT License] [LICENSE.md](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/LICENSE).
