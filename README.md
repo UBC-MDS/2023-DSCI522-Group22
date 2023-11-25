@@ -23,3 +23,5 @@ dependencies:
   - requests=2.31.0
   - altair=5.1.2
   - scikit-learn=1.3.2
+  - pytest=7.4.3
+  - notebook=7.0.6
