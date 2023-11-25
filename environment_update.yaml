@@ -1,0 +1,15 @@
+# This enviroment is manually created
+# Based on our analyses code in scr file
+name: group_project_update
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - ipykernel=6.26.0
+  - pandas=2.1.3
+  - requests=2.31.0
+  - altair=5.1.2
+  - scikit-learn=1.3.2
+  # - vegafusion=1.4.5
+  # - vl-convert-python[version='>=0.14.0']
