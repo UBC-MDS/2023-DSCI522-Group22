@@ -4,7 +4,7 @@ import pytest
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.wine_color_classification import create_wine_prediction_chart 
+from src.helper_func_wine_classification_plot import create_wine_prediction_chart 
 
 # Test with valid input
 def test_valid_input():
