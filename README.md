@@ -17,13 +17,9 @@ To recreate our computational environment, please use conda and the provided `en
 conda env create -f env-group-project.yml
 
 dependencies:
-    - python==3.10
-    - ipykernel
-    - pandas>=2.1.1
-    - scikit-learn>=1.3.1    
-    - requests>=2.24.0
-    - ipython
-    - zipfile
-    - os
-    - altair=5.1.2
-    - vegafusion
+  - python=3.11.6
+  - ipykernel=6.26.0
+  - pandas=2.1.3
+  - requests=2.31.0
+  - altair=5.1.2
+  - scikit-learn=1.3.2
