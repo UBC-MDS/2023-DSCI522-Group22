@@ -12,6 +12,7 @@ def create_wine_prediction_chart(dataframe, red_wine_color, white_wine_color):
 
     Returns:
     alt.Chart: An Altair bar chart.
+    
     Example usage:
     result_df = <your_dataframe>
     chart = create_wine_prediction_chart(result_df, 'red', 'peachpuff')
