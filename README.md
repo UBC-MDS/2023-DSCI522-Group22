@@ -35,7 +35,6 @@ docker compose up
 
 2. In the terminal, look for a URL that starts with 
 `http://127.0.0.1:8888/lab?token=` 
-(for an example, see the highlighted text in the terminal below). 
 Copy and paste that URL into your browser.
 
 ## Licenses
@@ -57,3 +56,4 @@ dependencies:
 
 ## Reference
 This README.md file was largely inspired by and constructed upon [This version by Prof. Tiffany Timbers](https://github.com/ttimbers/breast_cancer_predictor_py/blob/v1.0.0/README.md)
+Additional references are found under the full report
