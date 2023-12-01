@@ -1,0 +1,6 @@
+,level_0,level_1,correlation,correlation_text
+0,fixed acidity,fixed acidity,1.0,1.00
+1,fixed acidity,volatile acidity,0.36684351614585553,0.37
+2,fixed acidity,citric acid,0.23149279010267146,0.23
+3,fixed acidity,residual sugar,-0.13772865583666719,-0.14
+4,fixed acidity,chlorides,0.6012009550601208,0.60

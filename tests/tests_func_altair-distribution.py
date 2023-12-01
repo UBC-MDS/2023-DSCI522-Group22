@@ -7,7 +7,7 @@ import altair as alt
 
 
 
-test_data = pd.read_csv("data/test/test_data_alt_distri.cvs", index_col="Unnamed: 0")
+test_data = pd.read_csv("data/test/test_data_alt_distri.csv", index_col="Unnamed: 0")
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.layered_distri_plot import layered_distri_plot
