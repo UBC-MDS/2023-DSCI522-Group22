@@ -11,8 +11,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import Ridge
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from src.helper_func_model_selection import model_selection
-from src.wine_color_classification import create_wine_prediction_chart 
+from src.helper_func_wine_classification_plot import create_wine_prediction_chart 
 
 def test_single_model():
     # Test with a single model
