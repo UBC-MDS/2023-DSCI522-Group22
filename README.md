@@ -62,6 +62,7 @@ dependencies:
   - scikit-learn=1.3.2
   - pytest=7.4.3
   - notebook=7.0.6
+  - click=8.1.7
 
 ## Reference
 This README.md file was largely inspired by and constructed upon [This version by Prof. Tiffany Timbers](https://github.com/ttimbers/breast_cancer_predictor_py/blob/v1.0.0/README.md).
