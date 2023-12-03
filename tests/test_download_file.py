@@ -4,9 +4,9 @@ import os
 from unittest.mock import patch, Mock, mock_open
 from click.testing import CliRunner
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.download_file import * 
+from scripts.download_file import * 
 
-script_dir = '../src'  # Replace with the actual path
+script_dir = '../scripts'  # Replace with the actual path
 sys.path.append(os.path.abspath(script_dir))
 from download_file import *  # Replace with the actual name of your script
 
