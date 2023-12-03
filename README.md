@@ -89,6 +89,18 @@ python scripts/wine_classification_plot_script.py \
 type `Cntrl` + `C` in the terminal
 where you launched the container, and then type `docker compose rm`
 
+## Developer Note
+### Adding a new dependency
+1. Add the dependency to the Dockerfile file on a new branch.
+2. Re-build the Docker image locally to ensure it builds and runs properly.
+3. Push the changes to GitHub. A new Docker image will be built and pushed to Docker Hub automatically. It will be tagged with the SHA for the commit that changed the file.
+4. Update the docker-compose.yml file on your branch to use the new container image (make sure to update the tag specifically).
+5. Send a pull request to merge the changes into the main branch.
+
+### Running the tests
+Tests are run using the pytest command in the root of the project. More details about the test suite can be found in the tests directory.
+
+
 ## Licenses
 This project is licensed under the [MIT License] [LICENSE.md](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/LICENSE).
 
