@@ -3,7 +3,49 @@ import pandas as pd
 import altair as alt
 import os
 
-#To-do:Create doc string 
+'''
+This script generates a visualization for a logistic regression model's coefficients, 
+differentiating the features indicative of red and white wines. 
+
+It reads a dataframe from a CSV file, performs validation checks, and processes the data 
+to associate coefficients with wine predictions. The script uses the Altair library to create 
+a bar chart that visualizes the importance of different properties in predicting 
+wine type.
+
+Parameters:
+----------
+dataframe_csv : str
+    Path to the CSV file containing the dataframe with logistic regression coefficients.
+red_wine_color : str, optional
+    Color to represent features predicting Red Wine in the visualization (default is 'red').
+white_wine_color : str, optional
+    Color to represent features predicting White Wine in the visualization (default is 'peachpuff').
+output_path : str, optional
+    The output file path where the visualization will be saved as a PNG image (default is 
+    '../results/figures/predict_visualization.png').
+
+Raises:
+------
+ValueError:
+    If the dataframe is empty, if 'Coefficient' column is missing from the dataframe, 
+    or if the output path does not end with '.png'.
+FileNotFoundError:
+    If the directory specified in the output path does not exist.
+
+Output:
+------
+A PNG image file of the visualization is saved to the provided output path. The image 
+illustrates the logistic regression coefficients as bars, color-coded to represent their 
+prediction for red or white wine based on the physicochemical properties of the wines.
+
+Example:
+-------
+To run this script from the command line, you may use the following format:
+$ python script_name.py --dataframe-csv path/to/dataframe.csv --red-wine-color darkred --white-wine-color lightblue --output-path path/to/output.png
+
+The above command will generate a visualization with customized colors for red and white wine predictions 
+and save it to the specified output path.
+'''
 
 @click.command()
 @click.option('--dataframe-csv', type=str, required=True, help="Path to the CSV file containing the dataframe")
