@@ -47,9 +47,14 @@ def save_or_extract_file(content, filename, destination):
 
 @click.command()
 @click.option('--url', type=str, required=True, help='The URL of the file to download.')
-@click.option('--destination', type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True), default='.', help='The directory to save the downloaded file.')
+@click.option('--destination', type=click.Path(file_okay=False, dir_okay=True, writable=True), default='.', help='The directory to save the downloaded file.')
 def main(url, destination):
     """Simple program that downloads a file from a given URL and handles it based on its file extension."""
+
+    # Check and create the destination directory
+    if not os.path.exists(destination):
+        os.makedirs(destination)
+
     try:
         response = requests.get(url)
         response.raise_for_status()  # Check for HTTP request errors
