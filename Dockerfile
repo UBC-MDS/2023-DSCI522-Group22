@@ -16,3 +16,4 @@ RUN conda install -y notebook=7.0.6
 RUN conda install -y pytest=7.4.3
 RUN conda install -y altair_saver=0.5.0
 RUN conda install -y click=8.1.7
+RUN conda install -y jupyter-book=0.15.1
