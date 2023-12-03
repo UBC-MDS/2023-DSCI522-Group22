@@ -11,12 +11,16 @@ from src.helper_func_eda_visualization import create_numeric_hist_plots
 from src.cor_matrix_plot import cor_matrix_plot
 
 @click.command()
-@click.option('--train-data', type=str, help="Path to read in training data white")
+@click.option('--train-data', type=str, help="Path to read in training data CSV file")
 @click.option('--plot-path', type=str, help="Path to directory where the plot will be written to")
-
 
 def main(train_data, plot_path):
 
+    # Ensure that the plot_path directory exists
+    if not os.path.exists(plot_path):
+        os.makedirs(plot_path)
+
+    # Read the training data CSV file
     wine_train = pd.read_csv(train_data, index_col='Unnamed: 0')
 
     layerd_distribution_plot = layered_distri_plot(wine_train)
