@@ -41,46 +41,46 @@ enter the following commands in the terminal in the project root:
 
 ```
 # Step 1: download and extract data
-python download_file.py --url "https://archive.ics.uci.edu/static/public/186/wine+quality.zip" --destination "../data/raw"
-
+python scripts/download_file.py --url="https://archive.ics.uci.edu/static/public/186/wine+quality.zip" --destination=data/raw/
 
 # Step 2: basic data wrangling
-python basic_data_wrangling.py \
-  --raw-data-white "../data/raw/winequality-white.csv" \
-  --raw-data-red "../data/raw/winequality-red.csv" \
-  --processed-data "../data/processed" \
-  --train-data "../data/processed" \
-  --test-data "../data/processed" \
-  --seed 522
-
+python scripts/basic_data_wrangling.py \
+   --raw-data-white=data/raw/winequality-white.csv\
+   --raw-data-red=data/raw/winequality-red.csv
+   --processed-data=data/processed/ \
+   --train-data=data/processed/ \
+   --test-data=data/processed/ \
+   --seed=522
 
 # Step 3: EDA
 # This step saves several graphs in PNG format as a part of EDA
-# The following 3 files are required to run this script. Make sure they exist under the src folder
-# helper_func_eda_visualization.py
-# cor_matrix_plot.py
-# layered_distri_plot.py
-python eda.py --train-data "../data/processed" --plot-path "../results/figures"
+python scripts/eda.py \
+   --train-data=data/processed/wine_train.csv\
+   --plot-path=results/figures/
 
 
 # Step 4: Preprocessing
 # This step saves the preprocessor to a pickle object under "results/models"
-python preprocess.py --data-to "../data/processed" --preprocessor-to "../results/models"
+python scripts/preprocess.py \
+   --data-to=data/processed/ \
+   --preprocessor-to=results/models/
 
 
 # Step 5: Analysis
 # This step uses a machine learning model to study the scaled data
 # Result tables and model object will be saved locally
-python model.py \
-  --scaled-data "../data/processed" \
-  --results-dir "../results/tables" \
-  --model-save-dir "../results/models"
+python scripts/model.py \
+   --scaled-data=data/processed/ \
+   --results-dir=results/tables/ \
+   --model-save-dir=results/models/
 
 
 # Step 6: Visualize the result
 # This step, by default, will generate predict_visualization.png under "results/figures/"
-python wine_classification_plot_script.py \
-  --dataframe-csv "../results/tables/logistic_regression_feature_importance.csv"
+python scripts/wine_classification_plot_script.py \
+   --dataframe-csv=results/tables/logistic_regression_feature_importance.csv \
+   --output-path=results/figures/predict_visualization.png
+
 ```
 
 #### Clean up
