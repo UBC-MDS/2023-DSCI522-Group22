@@ -1,4 +1,4 @@
-# split_n_preprocess.py
+# preprocess.py
 # author: Chun Li
 # date: 2023-12-01
 

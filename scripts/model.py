@@ -25,11 +25,12 @@ models = {
 @click.command()
 @click.option('--scaled-data', type=str, help="Path to directory containing scaled data", default='../data/processed')
 @click.option('--results-dir', type=str, help="Path to base results directory", default='../results')
+@click.option('--model-save-dir', type=str, help="Path to directory where the model will be saved", default='../results')
 
-def main(scaled_data, results_dir):
+def main(scaled_data, results_dir, model_save_dir):
     # Paths for tables and models directories
-    tables_dir = os.path.join(results_dir, 'tables')
-    models_dir = os.path.join(results_dir, 'models')
+    tables_dir = results_dir
+    models_dir = model_save_dir 
     os.makedirs(tables_dir, exist_ok=True)
     os.makedirs(models_dir, exist_ok=True)
 
@@ -85,7 +86,9 @@ def main(scaled_data, results_dir):
     result_df.to_csv(os.path.join(tables_dir, 'logistic_regression_feature_importance.csv'), index=False)
 
     # Save the Logistic Regression model as a pickle file
-    with open(os.path.join(models_dir, 'logistic_regression_model.pkl'), 'wb') as f:
+    model_save_path = os.path.join(model_save_dir, 'logistic_regression_model.pickle')
+    os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
+    with open(model_save_path, 'wb') as f:
         pickle.dump(logistic_model, f)
 
     # Print the results for quick viewing
