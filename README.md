@@ -10,7 +10,7 @@ The regression result suggested that residual sugar and total sulfur dioxide had
 The logistic regression model not only achieved high accuracy but also provided valuable insights into the features most indicative of wine type. This model can assist vintners in quality control and classification tasks. Moreover, the interpretability of the model offers a foundation for further research into wine composition and its impact on sensory attributes. Future studies might explore more complex models or delve deeper into feature engineering to enhance predictive accuracy and understanding.
 
 ## Report
-The full report can be viewed online [here](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/notebooks/wine_color_classification_report.ipynb) or locally at `../html/wine_color_classification_report.html`
+The full report can be viewed online [here](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/report/_build/html/wine_color_classification_report.html) or locally at `../report/_build/html/wine_color_classification_report.html`
 
 ## Dependencies
 The [Docker](https://www.docker.com/) image utilized for this project, sourced from `quay.io/jupyter/minimal-notebook:notebook-7.0.6`, serves as a container solution designed to handle the software dependencies required for this project. For more detail, please refer to our [Dockerfile](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/Dockerfile)
