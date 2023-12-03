@@ -1,0 +1,14 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: "A Practical Exploration of the Wine Quality Dataset"
+author: "Jordan Cairns, Chris Gao, Yingzi Jin and Chun Li"
+date: "2023-12-02"
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+execute:
+  execute_notebooks: force 
+bibtex_bibfiles:
+    - references.bib
