@@ -96,10 +96,10 @@ where you launched the container, and then type `docker compose rm`
 3. Push the changes to GitHub. A new Docker image will be built and pushed to Docker Hub automatically. It will be tagged with the SHA for the commit that changed the file.
 4. Update the docker-compose.yml file on your branch to use the new container image (make sure to update the tag specifically).
 5. Send a pull request to merge the changes into the main branch.
+*This note is reference to Tiffany's repository https://github.com/ttimbers/breast_cancer_predictor_py
 
 ### Running the tests
-Tests are run using the pytest command in the root of the project. More details about the test suite can be found in the tests directory.
-
+The project's tests are executed via the 'pytest' command located at the project's root. Additional information regarding the test suite can be located within the tests directory.
 
 ## Licenses
 This project is licensed under the [MIT License] [LICENSE.md](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/LICENSE).
