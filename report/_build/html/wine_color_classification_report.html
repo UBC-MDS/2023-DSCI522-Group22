@@ -307,20 +307,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">A Practical Exploration of the Wine Quality Dataset</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by-jordan-cairns-chris-gao-yingzi-jin-and-chun-li">By Jordan Cairns, Chris Gao, Yingzi Jin and Chun Li</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-fulfillment-of-dsci-522-milestone-1">In fulfillment of DSCI 522 Milestone 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">Executive Summary</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">A Practical Exploration of the Wine Quality Dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">Executive Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-overview">Data Overview:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-and-results">Models and Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
 </ul>
 
@@ -336,18 +331,42 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="a-practical-exploration-of-the-wine-quality-dataset">
 <h1>A Practical Exploration of the Wine Quality Dataset<a class="headerlink" href="#a-practical-exploration-of-the-wine-quality-dataset" title="Permalink to this heading">#</a></h1>
-<section id="by-jordan-cairns-chris-gao-yingzi-jin-and-chun-li">
-<h2>By Jordan Cairns, Chris Gao, Yingzi Jin and Chun Li<a class="headerlink" href="#by-jordan-cairns-chris-gao-yingzi-jin-and-chun-li" title="Permalink to this heading">#</a></h2>
+<p>By Jordan Cairns, Chris Gao, Yingzi Jin &amp; Chun Li 2023-12-03</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;../results/tables/logistic_regression_feature_importance.csv&quot;</span><span class="p">)</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;lr_feature_importance_df&quot;</span><span class="p">,</span> <span class="n">lr_feature_importance_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+
+<span class="n">lr_test_score_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;../results/tables/logistic_regression_test_score.csv&quot;</span><span class="p">)</span>
+<span class="n">score_value</span> <span class="o">=</span> <span class="n">lr_test_score_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="n">rounded_score</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">score_value</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">final_score</span> <span class="o">=</span> <span class="n">rounded_score</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;final_test_score&quot;</span><span class="p">,</span> <span class="n">final_score</span><span class="p">,</span><span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">model_cv_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/model_cv_results.csv&quot;</span><span class="p">)</span>
+<span class="n">model_cv_results_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">model_cv_results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;model_cv_results_df&quot;</span><span class="p">,</span> <span class="n">model_cv_results_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>     
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="in-fulfillment-of-dsci-522-milestone-1">
-<h2>In fulfillment of DSCI 522 Milestone 1<a class="headerlink" href="#in-fulfillment-of-dsci-522-milestone-1" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="executive-summary">
-<h2>Executive Summary<a class="headerlink" href="#executive-summary" title="Permalink to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="executive-summary">
+<h1>Executive Summary<a class="headerlink" href="#executive-summary" title="Permalink to this heading">#</a></h1>
 <p>Our analysis aimed to develop a predictive model to distinguish between red and white wines based on various physicochemical properties. This study employed logistic regression, a model renowned for its balance between predictive power and interpretability.</p>
 <p>The regression result suggested that residual sugar and total sulfur dioxide had high positive coefficients, indicating a strong association with white wine, whereas density showed the most substantial negative impact, followed by alcohol and volatile acidity, suggesting these are key indicators of red wine.</p>
 <p>The logistic regression model not only achieved high accuracy but also provided valuable insights into the features most indicative of wine type. This model can assist vintners in quality control and classification tasks. Moreover, the interpretability of the model offers a foundation for further research into wine composition and its impact on sensory attributes. Future studies might explore more complex models or delve deeper into feature engineering to enhance predictive accuracy and understanding.</p>
-</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
@@ -356,64 +375,6 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="data">
 <h1>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h1>
 <p>The dataset utilized in our project is sourced from the UCI Machine Learning Repository, specifically focusing on red and white variants of Portuguese “Vinho Verde” wine​​​​. This dataset is distinguished by its emphasis on physicochemical tests to model wine quality, capturing a range of variables that reflect the sensory and chemical composition of the wine samples. Notably, it encompasses various input features like acidity, sugar content, and alcohol levels, while the output variable relates to the sensory-driven quality rating of the wines. A unique aspect of this dataset is its exclusion of data on grape types, wine brands, or prices due to privacy and logistic constraints. This attribute frames our analysis within a context of physicochemical and sensory data, offering an opportunity to delve into wine quality assessment based on measurable attributes, free from commercial biases. The dataset’s structure lends itself to both classification and regression tasks, providing a fertile ground for exploring machine learning applications in the domain of wine quality evaluation.</p>
-<section id="data-overview">
-<h2>Data Overview:<a class="headerlink" href="#data-overview" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
-<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">BernoulliNB</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_validate</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">OrdinalEncoder</span>
-<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span><span class="p">,</span> <span class="n">make_column_selector</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;../src&quot;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">helper_func_wine_classification_plot</span> <span class="kn">import</span> <span class="n">create_wine_prediction_chart</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/raw/winequality.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">np.random.seed(522)</span>
-<span class="sd">set_config(transform_output=&quot;pandas&quot;)</span>
-
-<span class="sd"># Creating the split</span>
-<span class="sd">wine_train, wine_test = train_test_split(df_wine, train_size=0.70, stratify=df_wine[&quot;color&quot;])</span>
-<span class="sd">&#39;&#39;&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nnp.random.seed(522)\nset_config(transform_output=&quot;pandas&quot;)\n\n# Creating the split\nwine_train, wine_test = train_test_split(df_wine, train_size=0.70, stratify=df_wine[&quot;color&quot;])\n&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="exploratory-data-analysis">
 <h2>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this heading">#</a></h2>
 <p>The first step of EDA is to generate some histograms to visualize the effects of all numerical variables to the type of wines. By comparing these distributions side by side, we can pinpoint which features exhibit significant variations across the two categories, thereby informing feature selection for predictive modeling. Such visual tools are invaluable as they facilitate an intuitive understanding of complex data relationships, highlight potential factors that could influence the wine’s classification, and guide subsequent analytical steps in the data science workflow.</p>
@@ -432,206 +393,169 @@ document.write(`
 </section>
 <section id="models-and-results">
 <h2>Models and Results<a class="headerlink" href="#models-and-results" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; # Build a transformer to further process the data</span>
-<span class="sd">numeric_features = wine_train.columns.tolist()[:-2]</span>
-<span class="sd">categorical_features = wine_train.columns.tolist()[-2:-1]</span>
-<span class="sd">columns_to_passthrough = [&#39;color&#39;]</span>
+<figure class="align-default" style="width: 400px">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="sd">wine_preprocessor = make_column_transformer(</span>
-<span class="sd">    (StandardScaler(), numeric_features),</span>
-<span class="sd">    (OrdinalEncoder(), categorical_features),</span>
-<span class="sd">    (&#39;passthrough&#39;, columns_to_passthrough)</span>
-<span class="sd">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="sd">wine_preprocessor.fit(wine_train)</span>
-<span class="sd">scaled_wine_train = wine_preprocessor.transform(wine_train)</span>
-<span class="sd">scaled_wine_test = wine_preprocessor.transform(wine_test)</span>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>model</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>dummy</td>
+      <td>0.753904</td>
+      <td>0.753904</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>dtree</td>
+      <td>0.985485</td>
+      <td>0.999835</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>knn</td>
+      <td>0.993182</td>
+      <td>0.994722</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>svm</td>
+      <td>0.995821</td>
+      <td>0.997086</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>nb</td>
+      <td>0.973169</td>
+      <td>0.974983</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>lr</td>
+      <td>0.995382</td>
+      <td>0.995217</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></figure>
+<p>Upon concluding our exploratory data analysis and delving into model evaluation, the results delineate an intriguing landscape of model performance. Notably, while the Decision Tree, KNN, and RBF SVM models exhibit high accuracy, with the SVM model achieving the highest test scores, the choice of model cannot rest on accuracy alone. Logistic Regression, while marginally surpassed by SVM in test score metrics, stands out for its interpretability. This model provides not only a robust predictive performance but also the capacity to glean meaningful insights from the significance and impact of each feature, as reflected by its coefficients. In light of this, we opt for Logistic Regression, valuing the interpretative clarity it offers, which is instrumental for a nuanced understanding of the variables influencing wine classification. This strategic choice harmonizes predictive strength with explanatory depth, guiding us towards actionable intelligence over mere predictive prowess.
+The final accuracy score for our logistic regression model was <span class="output text_plain">0.9913</span></p>
+<p>To further explore the relationship between the two wines, we examined the coeffecients fit to our logistic regression model. This showed
+the marginal contribution of each feature to our model.</p>
+<p><img alt="wine_prediction_chart" src="_images/predict_visualization.png" /></p>
+<figure class="align-default" style="width: 400px">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="sd">scaled_wine_train.to_csv(&quot;../data/processed/scaled_wine_train.csv&quot;)</span>
-<span class="sd">scaled_wine_test.to_csv(&quot;../data/processed/scaled_wine_test.csv&quot;) &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # Build a transformer to further process the data\nnumeric_features = wine_train.columns.tolist()[:-2]\ncategorical_features = wine_train.columns.tolist()[-2:-1]\ncolumns_to_passthrough = [\&#39;color\&#39;]\n\nwine_preprocessor = make_column_transformer(\n    (StandardScaler(), numeric_features),\n    (OrdinalEncoder(), categorical_features),\n    (\&#39;passthrough\&#39;, columns_to_passthrough)\n)\n\nwine_preprocessor.fit(wine_train)\nscaled_wine_train = wine_preprocessor.transform(wine_train)\nscaled_wine_test = wine_preprocessor.transform(wine_test)\n\nscaled_wine_train.to_csv(&quot;../data/processed/scaled_wine_train.csv&quot;)\nscaled_wine_test.to_csv(&quot;../data/processed/scaled_wine_test.csv&quot;) &#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; # Rename &#39;passthrough__color&#39; back to &#39;color&#39;</span>
-<span class="sd">scaled_wine_train.rename(columns={&#39;passthrough__color&#39;: &#39;color&#39;}, inplace=True)</span>
-<span class="sd">scaled_wine_test.rename(columns={&#39;passthrough__color&#39;: &#39;color&#39;}, inplace=True)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="sd"># Preparing data for machine learning model</span>
-<span class="sd">X_train = scaled_wine_train.drop(columns=[&#39;color&#39;])</span>
-<span class="sd">y_train = scaled_wine_train[&#39;color&#39;]</span>
-
-<span class="sd">X_test = scaled_wine_test.drop(columns=[&#39;color&#39;])</span>
-<span class="sd">y_test = scaled_wine_test[&#39;color&#39;] &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot; # Rename &#39;passthrough__color&#39; back to &#39;color&#39;\nscaled_wine_train.rename(columns={&#39;passthrough__color&#39;: &#39;color&#39;}, inplace=True)\nscaled_wine_test.rename(columns={&#39;passthrough__color&#39;: &#39;color&#39;}, inplace=True)\n\n# Preparing data for machine learning model\nX_train = scaled_wine_train.drop(columns=[&#39;color&#39;])\ny_train = scaled_wine_train[&#39;color&#39;]\n\nX_test = scaled_wine_test.drop(columns=[&#39;color&#39;])\ny_test = scaled_wine_test[&#39;color&#39;] &quot;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; # Creating the DummyClassifier to get the baseline score</span>
-<span class="sd">dummy_scores = pd.DataFrame(cross_validate(</span>
-<span class="sd">    DummyClassifier(strategy=&quot;most_frequent&quot;),</span>
-<span class="sd">    X_train,</span>
-<span class="sd">    y_train,</span>
-<span class="sd">    return_train_score=True,</span>
-<span class="sd">    scoring=[&quot;accuracy&quot;]</span>
-<span class="sd">))</span>
-
-<span class="sd">dummy_scores &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # Creating the DummyClassifier to get the baseline score\ndummy_scores = pd.DataFrame(cross_validate(\n    DummyClassifier(strategy=&quot;most_frequent&quot;),\n    X_train,\n    y_train,\n    return_train_score=True,\n    scoring=[&quot;accuracy&quot;]\n))\n\ndummy_scores &#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; from helper_func_model_selection import model_selection</span>
-<span class="sd">models = model_selection(&quot;dummy&quot;, &quot;dtree&quot;, &quot;knn&quot;, &quot;svm&quot;, &quot;nb&quot;, &quot;lr&quot;)</span>
-<span class="sd">models &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; from helper_func_model_selection import model_selection\nmodels = model_selection(&quot;dummy&quot;, &quot;dtree&quot;, &quot;knn&quot;, &quot;svm&quot;, &quot;nb&quot;, &quot;lr&quot;)\nmodels &#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; # The following block of code was inspired by DSCI 571 Lab 4</span>
-
-<span class="sd">results_list = []</span>
-
-<span class="sd">for name, model in models.items():</span>
-<span class="sd">    </span>
-<span class="sd">    # Create a pipeline with a CountVectorizer and the current model</span>
-<span class="sd">    pipeline = make_pipeline(model)</span>
-<span class="sd">    </span>
-<span class="sd">    # Perform cross-validation</span>
-<span class="sd">    cv_results = cross_validate(pipeline, X_train, y_train, cv=5,</span>
-<span class="sd">    return_train_score=True,</span>
-<span class="sd">    scoring=&#39;accuracy&#39;,</span>
-<span class="sd">    n_jobs=-1)</span>
-<span class="sd">    </span>
-<span class="sd">    # Append results for the current model to the results_list</span>
-<span class="sd">    results_list.append({</span>
-<span class="sd">        &quot;model&quot;: name,</span>
-<span class="sd">        &quot;fit_time&quot;: np.mean(cv_results[&#39;fit_time&#39;]),</span>
-<span class="sd">        &quot;score_time&quot;: np.mean(cv_results[&#39;score_time&#39;]),</span>
-<span class="sd">        &quot;test_score&quot;: np.mean(cv_results[&#39;test_score&#39;]),</span>
-<span class="sd">        &quot;train_score&quot;: np.mean(cv_results[&#39;train_score&#39;]),</span>
-<span class="sd">    })</span>
-
-<span class="sd"># Create a DataFrame from the results_list</span>
-<span class="sd">results_df = pd.DataFrame(results_list)</span>
-
-<span class="sd"># Set the model name as the index</span>
-<span class="sd">results_df.set_index(&#39;model&#39;, inplace=True)</span>
-
-<span class="sd"># Show the resulting DataFrame</span>
-<span class="sd">results_df &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # The following block of code was inspired by DSCI 571 Lab 4\n\nresults_list = []\n\nfor name, model in models.items():\n    \n    # Create a pipeline with a CountVectorizer and the current model\n    pipeline = make_pipeline(model)\n    \n    # Perform cross-validation\n    cv_results = cross_validate(pipeline, X_train, y_train, cv=5,\n    return_train_score=True,\n    scoring=\&#39;accuracy\&#39;,\n    n_jobs=-1)\n    \n    # Append results for the current model to the results_list\n    results_list.append({\n        &quot;model&quot;: name,\n        &quot;fit_time&quot;: np.mean(cv_results[\&#39;fit_time\&#39;]),\n        &quot;score_time&quot;: np.mean(cv_results[\&#39;score_time\&#39;]),\n        &quot;test_score&quot;: np.mean(cv_results[\&#39;test_score\&#39;]),\n        &quot;train_score&quot;: np.mean(cv_results[\&#39;train_score\&#39;]),\n    })\n\n# Create a DataFrame from the results_list\nresults_df = pd.DataFrame(results_list)\n\n# Set the model name as the index\nresults_df.set_index(\&#39;model\&#39;, inplace=True)\n\n# Show the resulting DataFrame\nresults_df &#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Upon concluding our exploratory data analysis and delving into model evaluation, the results delineate an intriguing landscape of model performance. Notably, while the Decision Tree, KNN, and RBF SVM models exhibit high accuracy, with the SVM model achieving the highest test scores, the choice of model cannot rest on accuracy alone. Logistic Regression, while marginally surpassed by SVM in test score metrics, stands out for its interpretability. This model provides not only a robust predictive performance but also the capacity to glean meaningful insights from the significance and impact of each feature, as reflected by its coefficients. In light of this, we opt for Logistic Regression, valuing the interpretative clarity it offers, which is instrumental for a nuanced understanding of the variables influencing wine classification. This strategic choice harmonizes predictive strength with explanatory depth, guiding us towards actionable intelligence over mere predictive prowess</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; # Fitting the Logistic Regression model and score it on the test portion</span>
-<span class="sd">model = LogisticRegression(max_iter=1000)</span>
-<span class="sd">model.fit(X_train,y_train)</span>
-<span class="sd">model.score(X_test, y_test) &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; # Fitting the Logistic Regression model and score it on the test portion\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train,y_train)\nmodel.score(X_test, y_test) &#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; # Producing the table to present the marginal contribution of each feature.</span>
-<span class="sd">reg_data = {</span>
-<span class="sd">    &#39;Feature Name&#39;: model.feature_names_in_,</span>
-<span class="sd">    &#39;Coefficient&#39;: model.coef_[0]</span>
-<span class="sd">}</span>
-
-<span class="sd">result_df = pd.DataFrame(reg_data)</span>
-
-<span class="sd">result_df[&#39;Feature Name&#39;] = result_df[&#39;Feature Name&#39;].str.replace(&#39;standardscaler__&#39;, &#39;&#39;)</span>
-<span class="sd">result_df[&#39;Feature Name&#39;] = result_df[&#39;Feature Name&#39;].str.replace(&#39;ordinalencoder__&#39;, &#39;&#39;)</span>
-
-<span class="sd">result_df &quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot; # Producing the table to present the marginal contribution of each feature.\nreg_data = {\n    &#39;Feature Name&#39;: model.feature_names_in_,\n    &#39;Coefficient&#39;: model.coef_[0]\n}\n\nresult_df = pd.DataFrame(reg_data)\n\nresult_df[&#39;Feature Name&#39;] = result_df[&#39;Feature Name&#39;].str.replace(&#39;standardscaler__&#39;, &#39;&#39;)\nresult_df[&#39;Feature Name&#39;] = result_df[&#39;Feature Name&#39;].str.replace(&#39;ordinalencoder__&#39;, &#39;&#39;)\n\nresult_df &quot;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">![</span>wine_prediction_chart<span class="o">](</span>../results/figures/predict_visualization.png<span class="o">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;[wine_prediction_chart]&#39; is not recognized as an internal or external command,
-operable program or batch file.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">wine_train.head(5).to_csv(&quot;../data/test/test_data_alt_distri.cvs&quot;)</span>
-<span class="sd">&#39;&#39;&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nwine_train.head(5).to_csv(&quot;../data/test/test_data_alt_distri.cvs&quot;)\n&#39;
-</pre></div>
-</div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature Name</th>
+      <th>Coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>fixed acidity</td>
+      <td>-0.058099</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>volatile acidity</td>
+      <td>-1.259050</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>citric acid</td>
+      <td>0.221233</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>residual sugar</td>
+      <td>2.503433</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>chlorides</td>
+      <td>-0.895879</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>free sulfur dioxide</td>
+      <td>-0.544393</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>total sulfur dioxide</td>
+      <td>2.710791</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>density</td>
+      <td>-4.221706</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>pH</td>
+      <td>-0.239053</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sulphates</td>
+      <td>-0.597874</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>alcohol</td>
+      <td>-1.602148</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>quality</td>
+      <td>-0.403374</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></figure>
 <p>The coefficients obtained from the logistic regression model provide a quantifiable measure of the impact each feature has on the likelihood of a wine being classified as red or white. Features with positive coefficients, such as residual sugar and total sulfur dioxide, increase the probability of a wine being classified as white, as indicated by the model.classes_ array. Conversely, features with negative coefficients, such as alcohol, volatile acidity, chlorides, and notably density with the largest negative coefficient, are indicative of a wine being classified as red. The magnitude of these coefficients reveals the relative importance of each feature, with density and alcohol having the most substantial influence in the negative direction and residual sugar significantly increases the odds in favor of white wine. The feature ‘quality’ also plays a role, albeit a smaller one, in swaying the classification towards red wine. Overall, the model’s coefficients provide a nuanced understanding of how each physicochemical characteristic tilts the balance in the complex interplay of factors that determine wine color in our dataset.</p>
 </section>
-<section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
 <p>The logistic regression analysis reveals expected relationships between wine characteristics and their classification as red or white. Residual sugar’s positive coefficient aligns with the higher levels typically found in white wines, indicating a greater likelihood of a wine being classified as white as the sugar content increases. Similarly, the positive coefficient for sulfur dioxide corresponds with the higher concentrations in white wines. The negative coefficients for alcohol and density suggest a higher probability of wine being classified as red with increasing values, which is consistent with red wines generally having higher alcohol content. These insights highlight the intricate balance of physicochemical properties influencing wine color, reaffirming the importance of considering the context and interactions of features within the dataset when interpreting model outcomes.</p>
 <p>Nevertheless, it’s important to remember that the signs and magnitudes of coefficients in logistic regression are influenced by the scale of the features and the correlations between them. These factors can affect the interpretability of the coefficients in complex ways, especially if there is multicollinearity in the data. Therefore, while the results are plausible and show some expected trends, any surprising findings would warrant a deeper investigation into the data and the model’s behavi</p>
-</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h1>
@@ -686,20 +610,15 @@ operable program or batch file.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">A Practical Exploration of the Wine Quality Dataset</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by-jordan-cairns-chris-gao-yingzi-jin-and-chun-li">By Jordan Cairns, Chris Gao, Yingzi Jin and Chun Li</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-fulfillment-of-dsci-522-milestone-1">In fulfillment of DSCI 522 Milestone 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">Executive Summary</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">A Practical Exploration of the Wine Quality Dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">Executive Summary</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-overview">Data Overview:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-and-results">Models and Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
 </ul>
 
