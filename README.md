@@ -45,8 +45,8 @@ python scripts/download_file.py --url="https://archive.ics.uci.edu/static/public
 
 # Step 2: basic data wrangling
 python scripts/basic_data_wrangling.py \
-   --raw-data-white=data/raw/winequality-white.csv\
-   --raw-data-red=data/raw/winequality-red.csv
+   --raw-data-white=data/raw/winequality-white.csv \
+   --raw-data-red=data/raw/winequality-red.csv \
    --processed-data=data/processed/ \
    --train-data=data/processed/ \
    --test-data=data/processed/ \
