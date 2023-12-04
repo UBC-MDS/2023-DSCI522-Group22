@@ -41,7 +41,8 @@ prediction for red or white wine based on the physicochemical properties of the 
 Example:
 -------
 To run this script from the command line, you may use the following format:
-$ python script_name.py --dataframe-csv path/to/dataframe.csv --red-wine-color darkred --white-wine-color lightblue --output-path path/to/output.png
+$ python wine_classification_plot_script.py --dataframe-csv path/to/dataframe.csv 
+--red-wine-color darkred --white-wine-color lightblue --output-path path/to/output.png
 
 The above command will generate a visualization with customized colors for red and white wine predictions 
 and save it to the specified output path.
