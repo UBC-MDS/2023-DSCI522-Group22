@@ -1,0 +1,22 @@
+services:
+  jupyter-lab:
+    image: lichunubc/wineclassifier:group22
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+    platform: linux/amd64
+
+  terminal:
+    image: lichunubc/wineclassifier:group22
+    volumes:
+      - .:/home/jovyan
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+    platform: linux/amd64
