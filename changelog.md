@@ -29,7 +29,7 @@ Fixed:
 3 (Jordan), 4 (Jordan) , 10 (Chun-li)
 
 To-be-Fixed:
-1 (?), 2 (Jordan), 6 (Chris), 7(Chris), 9 (?)
+1 (?), 2 (Jordan), 6 (Chris), 7(Chris), 9 (Chris?)
 
 Questionable if need fixing:
 5, 8
