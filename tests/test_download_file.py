@@ -3,12 +3,14 @@ import sys
 import os
 from unittest.mock import patch, Mock, mock_open
 from click.testing import CliRunner
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from scripts.download_file import * 
 
-script_dir = '../scripts'  # Replace with the actual path
-sys.path.append(os.path.abspath(script_dir))
-from download_file import *  # Replace with the actual name of your script
+#script_dir = '../scripts'  
+#sys.path.append(os.path.abspath(script_dir))
+#from scripts.download_file import *  
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from scripts.download_file  import *
 
 def test_download_successful(tmp_path):
 
@@ -18,7 +20,7 @@ def test_download_successful(tmp_path):
 	mock_response.status_code = 200
 	mock_response.content = b'data'
 
-	with patch('download_file.requests.get', return_value=mock_response):
+	with patch('scripts.download_file.requests.get', return_value=mock_response):
 		runner = click.testing.CliRunner()
 		result = runner.invoke(main, ['--url', test_url, '--destination', test_destination])
 		print(result.exit_code)
@@ -39,7 +41,7 @@ def test_download_http_error(tmp_path):
     mock_response = Mock()
     mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError
 
-    with patch('download_file.requests.get', return_value=mock_response):
+    with patch('scripts.download_file.requests.get', return_value=mock_response):
         runner = CliRunner()
         result = runner.invoke(main, ['--url', test_url, '--destination', test_destination])
         assert result.exit_code == 1  # Expecting a non-zero exit code for error
