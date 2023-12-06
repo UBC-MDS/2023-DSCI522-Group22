@@ -10,7 +10,7 @@ The regression result suggested that residual sugar and total sulfur dioxide had
 The logistic regression model not only achieved high accuracy but also provided valuable insights into the features most indicative of wine type. This model can assist vintners in quality control and classification tasks. Moreover, the interpretability of the model offers a foundation for further research into wine composition and its impact on sensory attributes. Future studies might explore more complex models or delve deeper into feature engineering to enhance predictive accuracy and understanding.
 
 ## Report
-The full report can be viewed online [here](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/report/_build/html/wine_color_classification_report.html) or locally at `../report/_build/html/wine_color_classification_report.html`
+The full report can be viewed online [here](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/report/wine_color_classification_report.ipynb)) or locally at `../report/_build/html/wine_color_classification_report.html`
 
 ## Dependencies
 The [Docker](https://www.docker.com/) image utilized for this project, sourced from `quay.io/jupyter/minimal-notebook:notebook-7.0.6`, serves as a container solution designed to handle the software dependencies required for this project. For more detail, please refer to our [Dockerfile](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/Dockerfile)
@@ -40,46 +40,23 @@ Copy and paste that URL into your browser.
 enter the following commands in the terminal in the project root:
 
 ```
-# Step 1: download and extract data
+# Step1 Download Zip file and save
 python scripts/download_file.py --url="https://archive.ics.uci.edu/static/public/186/wine+quality.zip" --destination=data/raw/
 
-# Step 2: basic data wrangling
-python scripts/basic_data_wrangling.py \
-   --raw-data-white=data/raw/winequality-white.csv\
-   --raw-data-red=data/raw/winequality-red.csv
-   --processed-data=data/processed/ \
-   --train-data=data/processed/ \
-   --test-data=data/processed/ \
-   --seed=522
+# Step 2 Basic Data Wrangling, the initial processing of the file 
+python scripts/basic_data_wrangling.py    --raw-data-white=data/raw/winequality-white.csv    --raw-data-red=data/raw/winequality-red.csv    --processed-data=data/processed/    --train-data=data/processed/    --test-data=data/processed/    --seed=522
 
-# Step 3: EDA
-# This step saves several graphs in PNG format as a part of EDA
-python scripts/eda.py \
-   --train-data=data/processed/wine_train.csv\
-   --plot-path=results/figures/
+# Step 3 EDA and distribution visualization
+python scripts/eda.py    --train-data=data/processed/wine_train.csv   --plot-path=results/figures/
 
+# Step 4 Model fitting
+python scripts/preprocess.py    --data-to=data/processed/    --preprocessor-to=results/models/
 
-# Step 4: Preprocessing
-# This step saves the preprocessor to a pickle object under "results/models"
-python scripts/preprocess.py \
-   --data-to=data/processed/ \
-   --preprocessor-to=results/models/
+# Step 5 Model Results 
+python scripts/model.py    --scaled-data=data/processed/    --results-dir=results/tables/    --model-save-dir=results/models/
 
-
-# Step 5: Analysis
-# This step uses a machine learning model to study the scaled data
-# Result tables and model object will be saved locally
-python scripts/model.py \
-   --scaled-data=data/processed/ \
-   --results-dir=results/tables/ \
-   --model-save-dir=results/models/
-
-
-# Step 6: Visualize the result
-# This step, by default, will generate predict_visualization.png under "results/figures/"
-python scripts/wine_classification_plot_script.py \
-   --dataframe-csv=results/tables/logistic_regression_feature_importance.csv \
-   --output-path=results/figures/predict_visualization.png
+# Step 6 Model Results Visualization
+python scripts/wine_classification_plot_script.py    --dataframe-csv=results/tables/logistic_regression_feature_importance.csv    --output-path=results/figures/predict_visualization.png
 
 ```
 
@@ -88,6 +65,18 @@ python scripts/wine_classification_plot_script.py \
 1. To shut down the container and clean up the resources, 
 type `Cntrl` + `C` in the terminal
 where you launched the container, and then type `docker compose rm`
+
+## Developer Note
+### Adding a new dependency
+1. Add the dependency to the Dockerfile file on a new branch.
+2. Re-build the Docker image locally to ensure it builds and runs properly.
+3. Push the changes to GitHub. A new Docker image will be built and pushed to Docker Hub automatically. It will be tagged with the SHA for the commit that changed the file.
+4. Update the docker-compose.yml file on your branch to use the new container image (make sure to update the tag specifically).
+5. Send a pull request to merge the changes into the main branch.
+*This note is reference to Tiffany's repository https://github.com/ttimbers/breast_cancer_predictor_py
+
+### Running the tests
+The project's tests are executed via the 'pytest' command located at the project's root. Additional information regarding the test suite can be located within the tests directory.
 
 ## Licenses
 This project is licensed under the [MIT License] [LICENSE.md](https://github.com/UBC-MDS/2023-DSCI522-Group22/blob/main/LICENSE).
