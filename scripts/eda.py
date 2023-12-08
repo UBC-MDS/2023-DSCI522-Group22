@@ -7,7 +7,7 @@ import pandas as pd
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.layered_distri_plot import layered_distri_plot
-from src.helper_func_eda_visualization import create_numeric_hist_plots
+from src.eda_visualization import create_numeric_hist_plots
 from src.cor_matrix_plot import cor_matrix_plot
 
 @click.command()

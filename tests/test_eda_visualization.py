@@ -5,7 +5,7 @@ import os
 import altair as alt
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.helper_func_eda_visualization import create_distribution_detail_plot, create_numeric_hist_plots
+from src.eda_visualization import create_distribution_detail_plot, create_numeric_hist_plots
 
 def test_create_distribution_detail_plot():
     # Create a sample DataFrame
