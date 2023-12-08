@@ -26,10 +26,10 @@ Feedback:
 The repo is lacking the docker-compose.yml file (all 4 reviewers noted this feedback)
 
 Fixed:
-1 (Chun Li), 3 (Jordan), 4 (Jordan) , 10 (Chun Li) 
+1 (Chun Li), 3 (Jordan), 4 (Jordan) , 10 (Chun-li), 6 (Chris), 7(Chris), 9 (Chris)
 
 To-be-Fixed:
-1 (?), 2 (Jordan), 6 (Chris), 7(Chris), 9 (Chris?)
+1 (?), 2 (Jordan)
 
 Questionable if need fixing:
 5, 8

@@ -86,8 +86,8 @@ def main(dataframe_csv, red_wine_color, white_wine_color, output_path):
 
     # Create the chart
     chart = alt.Chart(dataframe).mark_bar().encode(
-        x='Coefficient',
-        y='Feature Name',
+        x=alt.X('Coefficient'),
+        y=alt.Y('Feature Name').sort('-x'),
         color=alt.Color('Wine Prediction', 
                         legend=alt.Legend(title="Wine Prediction"), 
                         scale=alt.Scale(domain=['Predicting Red Wine', 'Predicting White Wine'], 
