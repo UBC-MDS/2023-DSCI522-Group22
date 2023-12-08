@@ -13,22 +13,34 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from scripts.download_file  import *
 
 def test_download_successful(tmp_path):
+    """
+    Test function to validate successful download.
+    
+    Args:
+    - tmp_path: Temporary directory path
+    
+    Asserts successful download of a file from a given URL to a specified destination.
+    """
+    test_url = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
+    test_destination = "../data"
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.content = b'data'
 
-	test_url = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
-	test_destination = "../data"
-	mock_response = Mock()
-	mock_response.status_code = 200
-	mock_response.content = b'data'
-
-	with patch('scripts.download_file.requests.get', return_value=mock_response):
-		runner = click.testing.CliRunner()
-		result = runner.invoke(main, ['--url', test_url, '--destination', test_destination])
-		print(result.exit_code)
-		assert result.exit_code == 1
+    with patch('scripts.download_file.requests.get', return_value=mock_response):
+        runner = click.testing.CliRunner()
+        result = runner.invoke(main, ['--url', test_url, '--destination', test_destination])
+        print(result.exit_code)
+        assert result.exit_code == 1
     
 
 def test_download_failure_invalid_url():
-    runner = CliRunner()
+    """
+    Test function to validate failure when providing an invalid URL.
+    
+    Asserts that an invalid URL provided to the main function results in a non-zero exit code.
+    """
+    runner = click.testing.CliRunner()
     result = runner.invoke(main, ['--url', 'invalidurl://example.com/somefile.csv'])
     assert result.exit_code != 0
     #assert 'Invalid URL provided' in result.output
@@ -36,18 +48,36 @@ def test_download_failure_invalid_url():
 
 # In test_download_file.py
 def test_download_http_error(tmp_path):
+    """
+    Test function to simulate an HTTP error during download.
+    
+    Args:
+    - tmp_path: Temporary directory path
+    
+    Asserts that an HTTP error occurring during the download process results in an expected error message
+    and a non-zero exit code.
+    """
     test_url = "https://example.com/nonexistentfile.csv"
     test_destination = tmp_path.as_posix()
     mock_response = Mock()
     mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError
 
     with patch('scripts.download_file.requests.get', return_value=mock_response):
-        runner = CliRunner()
+        runner = click.testing.CliRunner()
         result = runner.invoke(main, ['--url', test_url, '--destination', test_destination])
         assert result.exit_code == 1  # Expecting a non-zero exit code for error
         assert "HTTP error occurred" in result.output
 
 def create_test_zip(tmp_path, filename='test.zip'):
+    """
+    Function to create a test ZIP file with specified content.
+    
+    Args:
+    - tmp_path: Temporary directory path
+    - filename: Name of the test ZIP file
+    
+    Creates a test ZIP file with sample content and returns its path.
+    """
     zip_content = b"This is some test content"
     test_zip = tmp_path / filename
     with zipfile.ZipFile(test_zip, 'w') as zf:
@@ -55,6 +85,14 @@ def create_test_zip(tmp_path, filename='test.zip'):
     return test_zip
 
 def test_save_zip_file(tmp_path):
+    """
+    Test function to validate the extraction of content from a ZIP file.
+    
+    Args:
+    - tmp_path: Temporary directory path
+    
+    Creates a test ZIP file, extracts its content to a specified destination, and verifies the extraction.
+    """
     # Create a test zip file
     test_zip = create_test_zip(tmp_path)
     destination = tmp_path / 'extracted'
@@ -72,6 +110,14 @@ def test_save_zip_file(tmp_path):
     assert extracted_file.exists(), "The zip file was not extracted correctly"
 
 def test_save_non_zip_file(tmp_path):
+    """
+    Test function to validate saving non-ZIP file content.
+    
+    Args:
+    - tmp_path: Temporary directory path
+    
+    Saves non-ZIP file content to a specified destination and verifies the content is saved correctly.
+    """
     test_content = b"Sample CSV content"
     filename = 'test.csv'
     destination = tmp_path.as_posix()
@@ -93,7 +139,14 @@ def test_save_non_zip_file(tmp_path):
 
 @pytest.fixture
 def create_temp_csv_files(tmp_path):
-    # Create two temporary CSV files with sample data
+    """
+    Fixture to create temporary CSV files with sample data.
+    
+    Args:
+    - tmp_path: Temporary directory path
+    
+    Creates two temporary CSV files with sample data and returns their paths.
+    """
     df1 = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})
     df2 = pd.DataFrame({'A': [5, 6], 'B': [7, 8]})
     
@@ -105,6 +158,15 @@ def create_temp_csv_files(tmp_path):
     return file1, file2
 
 def test_concatenate_csv_files(create_temp_csv_files, tmp_path):
+    """
+    Test function to validate concatenating CSV files.
+    
+    Args:
+    - create_temp_csv_files: Fixture creating temporary CSV files
+    - tmp_path: Temporary directory path
+    
+    Concatenates two CSV files, verifies the merged content, and checks for the expected output.
+    """
     file1, file2 = create_temp_csv_files
     output_file = tmp_path / "output.csv"
 
