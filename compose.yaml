@@ -1,8 +1,8 @@
 services:
   jupyter-lab:
-    image: lichunubc/wineclassifier:group22
+    image: wine_color_classification:milestone4
     ports:
-      - "8888:8888"
+      - "8889:8888"
     volumes:
       - .:/home/jovyan
     deploy:
@@ -12,7 +12,7 @@ services:
     platform: linux/amd64
 
   terminal:
-    image: lichunubc/wineclassifier:group22
+    image: wine_color_classification:milestone4
     volumes:
       - .:/home/jovyan
     deploy:

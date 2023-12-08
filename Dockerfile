@@ -13,4 +13,5 @@ RUN conda install -y \
     pytest=7.4.3 \
     click=8.1.7 \
     jupyter-book=0.15.1 \
-    vl-convert-python=[version='>=0.14.0']
+    vl-convert-python=[version='>=0.14.0'] \
+    make=4.3
