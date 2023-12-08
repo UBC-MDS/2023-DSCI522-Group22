@@ -11,4 +11,4 @@ sphinx:
 execute:
   execute_notebooks: force 
 bibtex_bibfiles:
-    - references.bib
+  - references.bib
