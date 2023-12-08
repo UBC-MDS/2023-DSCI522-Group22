@@ -39,8 +39,8 @@ def create_wine_prediction_chart(dataframe, red_wine_color, white_wine_color):
 
     # Create the chart
     chart = alt.Chart(dataframe).mark_bar().encode(
-        x='Coefficient',
-        y='Feature Name',
+        x=alt.X('Coefficient'),
+        y=alt.Y('Feature Name').sort('-x'),
         color=alt.Color('Wine Prediction', 
                         legend=alt.Legend(title="Wine Prediction"), 
                         scale=alt.Scale(domain=['Predicting Red Wine', 'Predicting White Wine'], 
