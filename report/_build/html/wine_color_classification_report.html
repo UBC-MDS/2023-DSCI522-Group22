@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>A Practical Exploration of the Wine Quality Dataset &#8212; A Practical Exploration of the Wine Quality Dataset</title>
   
@@ -364,9 +364,10 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="executive-summary">
 <h1>Executive Summary<a class="headerlink" href="#executive-summary" title="Permalink to this heading">#</a></h1>
-<p>Our analysis aimed to develop a predictive model to distinguish between red and white wines based on various physicochemical properties. This study employed logistic regression, a model renowned for its balance between predictive power and interpretability.</p>
+<p>Our analysis aimed to develop a predictive model to distinguish between red and white wines based on various physicochemical properties. <span id="id1">[]</span> This study employed logistic regression, a model renowned for its balance between predictive power and interpretability.</p>
 <p>The regression result suggested that residual sugar and total sulfur dioxide had high positive coefficients, indicating a strong association with white wine, whereas density showed the most substantial negative impact, followed by alcohol and volatile acidity, suggesting these are key indicators of red wine.</p>
 <p>The logistic regression model not only achieved high accuracy but also provided valuable insights into the features most indicative of wine type. This model can assist vintners in quality control and classification tasks. Moreover, the interpretability of the model offers a foundation for further research into wine composition and its impact on sensory attributes. Future studies might explore more complex models or delve deeper into feature engineering to enhance predictive accuracy and understanding.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
@@ -427,38 +428,38 @@ document.write(`
     <tr>
       <th>1</th>
       <td>dtree</td>
-      <td>0.985485</td>
+      <td>0.979986</td>
       <td>0.999835</td>
     </tr>
     <tr>
       <th>2</th>
       <td>knn</td>
-      <td>0.993182</td>
-      <td>0.994722</td>
+      <td>0.992743</td>
+      <td>0.994392</td>
     </tr>
     <tr>
       <th>3</th>
       <td>svm</td>
-      <td>0.995821</td>
-      <td>0.997086</td>
+      <td>0.996481</td>
+      <td>0.997251</td>
     </tr>
     <tr>
       <th>4</th>
       <td>nb</td>
-      <td>0.973169</td>
-      <td>0.974983</td>
+      <td>0.975587</td>
+      <td>0.976193</td>
     </tr>
     <tr>
       <th>5</th>
       <td>lr</td>
-      <td>0.995382</td>
-      <td>0.995217</td>
+      <td>0.995821</td>
+      <td>0.995876</td>
     </tr>
   </tbody>
 </table>
 </div></div></figure>
 <p>Upon concluding our exploratory data analysis and delving into model evaluation, the results delineate an intriguing landscape of model performance. Notably, while the Decision Tree, KNN, and RBF SVM models exhibit high accuracy, with the SVM model achieving the highest test scores, the choice of model cannot rest on accuracy alone. Logistic Regression, while marginally surpassed by SVM in test score metrics, stands out for its interpretability. This model provides not only a robust predictive performance but also the capacity to glean meaningful insights from the significance and impact of each feature, as reflected by its coefficients. In light of this, we opt for Logistic Regression, valuing the interpretative clarity it offers, which is instrumental for a nuanced understanding of the variables influencing wine classification. This strategic choice harmonizes predictive strength with explanatory depth, guiding us towards actionable intelligence over mere predictive prowess.
-The final accuracy score for our logistic regression model was <span class="output text_plain">0.9913</span></p>
+The final accuracy score for our logistic regression model was <span class="output text_plain">0.9918</span></p>
 <p>To further explore the relationship between the two wines, we examined the coeffecients fit to our logistic regression model. This showed
 the marginal contribution of each feature to our model.</p>
 <p><img alt="wine_prediction_chart" src="_images/predict_visualization.png" /></p>
@@ -489,62 +490,62 @@ the marginal contribution of each feature to our model.</p>
     <tr>
       <th>0</th>
       <td>fixed acidity</td>
-      <td>-0.058099</td>
+      <td>0.061478</td>
     </tr>
     <tr>
       <th>1</th>
       <td>volatile acidity</td>
-      <td>-1.259050</td>
+      <td>-1.325504</td>
     </tr>
     <tr>
       <th>2</th>
       <td>citric acid</td>
-      <td>0.221233</td>
+      <td>0.245435</td>
     </tr>
     <tr>
       <th>3</th>
       <td>residual sugar</td>
-      <td>2.503433</td>
+      <td>3.130134</td>
     </tr>
     <tr>
       <th>4</th>
       <td>chlorides</td>
-      <td>-0.895879</td>
+      <td>-0.740894</td>
     </tr>
     <tr>
       <th>5</th>
       <td>free sulfur dioxide</td>
-      <td>-0.544393</td>
+      <td>-0.316917</td>
     </tr>
     <tr>
       <th>6</th>
       <td>total sulfur dioxide</td>
-      <td>2.710791</td>
+      <td>2.503398</td>
     </tr>
     <tr>
       <th>7</th>
       <td>density</td>
-      <td>-4.221706</td>
+      <td>-4.824456</td>
     </tr>
     <tr>
       <th>8</th>
       <td>pH</td>
-      <td>-0.239053</td>
+      <td>-0.063158</td>
     </tr>
     <tr>
       <th>9</th>
       <td>sulphates</td>
-      <td>-0.597874</td>
+      <td>-0.358068</td>
     </tr>
     <tr>
       <th>10</th>
       <td>alcohol</td>
-      <td>-1.602148</td>
+      <td>-1.871393</td>
     </tr>
     <tr>
       <th>11</th>
       <td>quality</td>
-      <td>-0.403374</td>
+      <td>-0.409865</td>
     </tr>
   </tbody>
 </table>
