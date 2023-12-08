@@ -16,3 +16,4 @@ dependencies:
   - click=8.1.7
   - jupyter-book=0.15.1
   - vl-convert-python[version='>=0.14.0']
+  - make=4.3
