@@ -2,7 +2,7 @@ services:
   jupyter-lab:
     image: wine_color_classification:milestone4
     ports:
-      - "8889:8888"
+      - "8888:8888"
     volumes:
       - .:/home/jovyan
     deploy:
