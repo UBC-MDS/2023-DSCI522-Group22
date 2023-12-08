@@ -26,7 +26,7 @@ Feedback:
 The repo is lacking the docker-compose.yml file (all 4 reviewers noted this feedback)
 
 Fixed:
-3 (Jordan), 4 (Jordan) , 10 (Chun-li), 6 (Chris), 7(Chris), 9 (Chris)
+1 (Chun Li), 3 (Jordan), 4 (Jordan) , 10 (Chun-li), 6 (Chris), 7(Chris), 9 (Chris)
 
 To-be-Fixed:
 1 (?), 2 (Jordan)
@@ -35,3 +35,11 @@ Questionable if need fixing:
 5, 8
 
 Will provide explanation for what we fixed after we fix.  
+
+
+
+Changes from Chun Li
+1. Updated LICENSE file based on the feedback received from Peer Review
+2. Updated the environment.yaml file to include the Make version 4.4.1
+3. Updated the Dockerfile to include Make version 4.4.1
+4. Rebuilt the Docker image and pushed it to Docker Hub remote repo
