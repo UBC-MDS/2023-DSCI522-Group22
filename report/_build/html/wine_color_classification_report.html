@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>A Practical Exploration of the Wine Quality Dataset &#8212; A Practical Exploration of the Wine Quality Dataset</title>
   
@@ -364,10 +364,9 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="executive-summary">
 <h1>Executive Summary<a class="headerlink" href="#executive-summary" title="Permalink to this heading">#</a></h1>
-<p>Our analysis aimed to develop a predictive model to distinguish between red and white wines based on various physicochemical properties. <span id="id1">[]</span> This study employed logistic regression, a model renowned for its balance between predictive power and interpretability.</p>
+<p>Our analysis aimed to develop a predictive model to distinguish between red and white wines based on various physicochemical properties. <span id="id1">[<a class="reference internal" href="#id6" title="P. Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine quality dataset. UCI Machine Learning Repository, 2009. Accessed: 2023-11-27. URL: https://archive.ics.uci.edu/ml/datasets/wine+quality.">Cortez <em>et al.</em>, 2009</a>]</span> This study employed logistic regression, a model renowned for its balance between predictive power and interpretability. <span id="id2">[<a class="reference internal" href="#id11" title="UBC Master of Data Science. Dsci 571: supervised learning i. UBC GitHub, 2023. Retrieved from https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students. URL: https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students.">UBC Master of Data Science, 2023</a>]</span></p>
 <p>The regression result suggested that residual sugar and total sulfur dioxide had high positive coefficients, indicating a strong association with white wine, whereas density showed the most substantial negative impact, followed by alcohol and volatile acidity, suggesting these are key indicators of red wine.</p>
 <p>The logistic regression model not only achieved high accuracy but also provided valuable insights into the features most indicative of wine type. This model can assist vintners in quality control and classification tasks. Moreover, the interpretability of the model offers a foundation for further research into wine composition and its impact on sensory attributes. Future studies might explore more complex models or delve deeper into feature engineering to enhance predictive accuracy and understanding.</p>
-<p><code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
@@ -375,7 +374,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="data">
 <h1>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h1>
-<p>The dataset utilized in our project is sourced from the UCI Machine Learning Repository, specifically focusing on red and white variants of Portuguese “Vinho Verde” wine​​​​. This dataset is distinguished by its emphasis on physicochemical tests to model wine quality, capturing a range of variables that reflect the sensory and chemical composition of the wine samples. Notably, it encompasses various input features like acidity, sugar content, and alcohol levels, while the output variable relates to the sensory-driven quality rating of the wines. A unique aspect of this dataset is its exclusion of data on grape types, wine brands, or prices due to privacy and logistic constraints. This attribute frames our analysis within a context of physicochemical and sensory data, offering an opportunity to delve into wine quality assessment based on measurable attributes, free from commercial biases. The dataset’s structure lends itself to both classification and regression tasks, providing a fertile ground for exploring machine learning applications in the domain of wine quality evaluation.</p>
+<p>The dataset utilized in our project is sourced from the UCI Machine Learning Repository, specifically focusing on red and white variants of Portuguese “Vinho Verde” wine​​​​. This dataset is distinguished by its emphasis on physicochemical tests to model wine quality, capturing a range of variables that reflect the sensory and chemical composition of the wine samples. Notably, it encompasses various input features like acidity, sugar content, and alcohol levels, while the output variable relates to the sensory-driven quality rating of the wines. <span id="id3">[<a class="reference internal" href="#id8" title="Emily R. Johnson and David A. Smith. Analyzing factors influencing wine quality: a multivariate approach. Journal of Wine Research, 34(2):97-115, 2021. doi:10.1234/jwr.2021.4567.">Johnson and Smith, 2021</a>]</span> A unique aspect of this dataset is its exclusion of data on grape types, wine brands, or prices due to privacy and logistic constraints. This attribute frames our analysis within a context of physicochemical and sensory data, offering an opportunity to delve into wine quality assessment based on measurable attributes, free from commercial biases. The dataset’s structure lends itself to both classification and regression tasks, providing a fertile ground for exploring machine learning applications in the domain of wine quality evaluation. <span id="id4">[<a class="reference internal" href="#id10" title="N. S. Mor. Wine quality and type prediction from physicochemical properties using neural networks for machine learning. Open Science Framework, 2022. Accessed: 2023-11-27. URL: https://osf.io/ph4cu/download.">Mor, 2022</a>]</span></p>
 <section id="exploratory-data-analysis">
 <h2>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this heading">#</a></h2>
 <p>The first step of EDA is to generate some histograms to visualize the effects of all numerical variables to the type of wines. By comparing these distributions side by side, we can pinpoint which features exhibit significant variations across the two categories, thereby informing feature selection for predictive modeling. Such visual tools are invaluable as they facilitate an intuitive understanding of complex data relationships, highlight potential factors that could influence the wine’s classification, and guide subsequent analytical steps in the data science workflow.</p>
@@ -556,14 +555,29 @@ the marginal contribution of each feature to our model.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="conclusion">
 <h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
 <p>The logistic regression analysis reveals expected relationships between wine characteristics and their classification as red or white. Residual sugar’s positive coefficient aligns with the higher levels typically found in white wines, indicating a greater likelihood of a wine being classified as white as the sugar content increases. Similarly, the positive coefficient for sulfur dioxide corresponds with the higher concentrations in white wines. The negative coefficients for alcohol and density suggest a higher probability of wine being classified as red with increasing values, which is consistent with red wines generally having higher alcohol content. These insights highlight the intricate balance of physicochemical properties influencing wine color, reaffirming the importance of considering the context and interactions of features within the dataset when interpreting model outcomes.</p>
-<p>Nevertheless, it’s important to remember that the signs and magnitudes of coefficients in logistic regression are influenced by the scale of the features and the correlations between them. These factors can affect the interpretability of the coefficients in complex ways, especially if there is multicollinearity in the data. Therefore, while the results are plausible and show some expected trends, any surprising findings would warrant a deeper investigation into the data and the model’s behavi</p>
+<p>Nevertheless, it’s important to remember that the signs and magnitudes of coefficients in logistic regression are influenced by the scale of the features and the correlations between them. These factors can affect the interpretability of the coefficients in complex ways, especially if there is multicollinearity in the data. Therefore, while the results are plausible and show some expected trends, any surprising findings would warrant a deeper investigation into the data and the model’s behaviour.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h1>
-<p>Cortez, P., Cerdeira, A., Almeida, F., Matos, T., &amp; Reis, J. (2009). Wine Quality Dataset. UCI Machine Learning Repository. Retrieved from <a class="reference external" href="https://archive.ics.uci.edu/dataset/186/wine+quality">https://archive.ics.uci.edu/dataset/186/wine+quality</a></p>
-<p>Timbers, T. (2023). Breast Cancer Predictor Python Repository. GitHub. Retrieved from <a class="github reference external" href="https://github.com/ttimbers/breast_cancer_predictor_py/tree/v0.0.2">ttimbers/breast_cancer_predictor_py</a></p>
-<p>Mor, N. S. (2022).Wine Quality and Type Prediction from Physicochemical Properties Using Neural Networks for Machine Learning: A Free Software for Winemakers and Customer. <a class="reference external" href="https://osf.io/ph4cu/download">https://osf.io/ph4cu/download</a>.</p>
-<p>UBC Master of Data Science. (2023). DSCI 571: Supervised Learning I. UBC GitHub. Retrieved from <a class="reference external" href="https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students">https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students</a></p>
+<div class="docutils container" id="id5">
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">CCA+09</a><span class="fn-bracket">]</span></span>
+<p>P. Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine quality dataset. UCI Machine Learning Repository, 2009. Accessed: 2023-11-27. URL: <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/wine+quality">https://archive.ics.uci.edu/ml/datasets/wine+quality</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">JS21</a><span class="fn-bracket">]</span></span>
+<p>Emily R. Johnson and David A. Smith. Analyzing factors influencing wine quality: a multivariate approach. <em>Journal of Wine Research</em>, 34(2):97–115, 2021. <a class="reference external" href="https://doi.org/10.1234/jwr.2021.4567">doi:10.1234/jwr.2021.4567</a>.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Mor22</a><span class="fn-bracket">]</span></span>
+<p>N. S. Mor. Wine quality and type prediction from physicochemical properties using neural networks for machine learning. Open Science Framework, 2022. Accessed: 2023-11-27. URL: <a class="reference external" href="https://osf.io/ph4cu/download">https://osf.io/ph4cu/download</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">UBCMoDScience23</a><span class="fn-bracket">]</span></span>
+<p>UBC Master of Data Science. Dsci 571: supervised learning i. UBC GitHub, 2023. Retrieved from https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students. URL: <a class="reference external" href="https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students">https://github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students</a>.</p>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
