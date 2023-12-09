@@ -38,8 +38,7 @@ Response to feedback & further improvements to our project:
 5. We decided that the current order of the plots were sufficient for readability and comprehension. We respectivefully disagreed with this advice. It was general 
    and didn't offer a suggestion how our plots should be ordered.
    
-8. This advice was not applicable, as our histograms weren't stacked additively, they were side by side. We think the visualization choice is sufficient to display 
-    our thesis.
+8. The advice of unstacking our histograms was not applicable. Our histograms weren't stacked additively, they were side by side. We think our visualization choice is sufficient to display our thesis.
 
 Changes from Chun Li
 1. Updated LICENSE file based on the feedback received from Peer Review
