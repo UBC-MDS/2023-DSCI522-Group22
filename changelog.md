@@ -45,3 +45,7 @@ Changes from Chun Li
 2. Updated the environment.yaml file to include the Make version 4.4.1
 3. Updated the Dockerfile to include Make version 4.4.1
 4. Rebuilt the Docker image and pushed it to Docker Hub remote repo
+
+Changes From Chris Gao:
+1. Updated function names, test names, and code in the test_function and scripts accordingly for consistency (7)
+2. Add doc string and explaination in all of the test functions. (6)
