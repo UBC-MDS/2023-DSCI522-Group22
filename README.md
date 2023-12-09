@@ -75,6 +75,14 @@ python scripts/wine_classification_plot_script.py    --dataframe-csv=results/tab
 type `Cntrl` + `C` in the terminal
 where you launched the container, and then type `docker compose rm`
 
+## Running the tests
+Tests are run using the `pytest` command in the root of the project.
+The following commands will run all the tests.
+```
+pytest /tests/*
+```
+More details about the test suite can be found in the [`tests`](tests) directory.
+
 ## Developer Note
 ### Adding a new dependency
 1. Add the dependency to the Dockerfile file on a new branch.
