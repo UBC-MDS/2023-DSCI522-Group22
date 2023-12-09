@@ -1,6 +1,6 @@
 https://github.com/UBC-MDS/data-analysis-review-2023/issues/15
 
-Below is the feedback we've recieved to improve our project.
+Below is a summary of the feedback we've recieved to improve our project.
 
 Feedback:
 1. You have the LICENSE.md file but do not have the Creative Commons license in the file. (I also do not have this in my group, and it was not made clear on how to do this but I think it is just adding some more things to your LICENSE.md file).
